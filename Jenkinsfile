@@ -35,34 +35,20 @@ pipeline {
                  )
             } 
         }
-        stage('Deploy') {
-
-          agent any 
-
-           stages {
-               stage("Build Image") {
-                   steps {
+        stage('Deploy Image') {
+                steps {
                        script { 
                       dockerImage = docker.build registry + ":$BUILD_NUMBER" 
                     }
-                   }
-               }
-               stage("Push Image") {
-                   steps {
-                      script { 
+                   script { 
                     docker.withRegistry( '', registryCredential ) { 
                         dockerImage.push() 
                     }
-
-                } 
-                }
-               }
-                stage("Clean Up Image") {
-                   steps {
-                       sh "docker rmi $registry:$BUILD_NUMBER"
+                    
                    }
-               }
-            }
+                  sh "docker rmi $registry:$BUILD_NUMBER"
+                }
+            
         }
         stage('Start Server') {
             steps {
