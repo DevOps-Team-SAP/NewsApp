@@ -7,8 +7,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>News Daily</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="app/assets/styles.css">
+    <style>
+        .fixed-content {
+    top: 0;
+    bottom:0;
+    right: 0;
+    padding-top: 70px;
+    position:fixed;
+    overflow-y:auto;
+    overflow-x:hidden;
+}
 
+@media (max-width: 767px) {
+    .fixed-content {
+        position: static;
+    }
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+    </style>
 </head>
 <body>
 <nav class="navbar sticky-top navbar-inverse bg-inverse">

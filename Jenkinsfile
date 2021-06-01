@@ -1,4 +1,15 @@
 pipeline {
+
+    environment { 
+
+        registry = "mohith321/newsapp" 
+
+        registryCredential = 'dockerhub_cred' 
+
+        dockerImage = '' 
+
+    }
+
     agent any
     
     stages {
@@ -19,18 +30,37 @@ pipeline {
                      },
                      'test':{
                         echo 'Running Tests'
-                     },
-                     'package':{
-                        echo 'Packaging Files'
                      }
                  )
-                
-            }
+            } 
         }
         stage('Deploy') {
-            steps {
-                echo 'Deploying...'
-                    
+
+          agent any 
+
+           stages {
+               stage("Build Image") {
+                   steps {
+                       script { 
+                      dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+                    }
+                   }
+               }
+               stage("Push Image") {
+                   steps {
+                      script { 
+                    docker.withRegistry( '', registryCredential ) { 
+                        dockerImage.push() 
+                    }
+
+                } 
+                }
+               }
+                stage("Clean Up Image") {
+                   steps {
+                       sh "docker rmi $registry:$BUILD_NUMBER"
+                   }
+               }
             }
         }
         stage('Start Server') {
