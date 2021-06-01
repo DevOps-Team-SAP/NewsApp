@@ -18,10 +18,10 @@ pipeline {
                         sh 'npm run build:prod'
                      },
                      'test':{
-                        echo 'Running Tests'
+                        echo 'Running Tests...'
                      },
                      'package':{
-                        echo 'Packaging Files'
+                        echo 'Packaging Files...'
                      }
                  )
                 
