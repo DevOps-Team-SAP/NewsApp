@@ -29,7 +29,8 @@ pipeline {
                         sh 'npm run build:prod'
                      },
                      'test':{
-                        echo 'Running Tests'
+                        echo 'Running Tests...'
+                        sh 'npm run test'
                      }
                  )
             } 
