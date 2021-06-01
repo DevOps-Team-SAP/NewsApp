@@ -31,11 +31,11 @@ pipeline {
             steps {
              parallel (
                      'deploy':{
-                        echo 'Deploying'
+                        echo 'Deploying...'
                     
                      },
                      'start':{
-                        echo 'Server Starting'
+                        echo 'Server Starting...'
                      }
                  )
             
