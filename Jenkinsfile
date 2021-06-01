@@ -14,34 +14,30 @@ pipeline {
             steps {
                  parallel (
                      'build':{
-                        echo 'Running Builds...'
+                        echo 'Running Builds'
                         sh 'npm run build:prod'
                      },
                      'test':{
-                        echo 'Running Tests...'
+                        echo 'Running Tests'
                      },
                      'package':{
-                        echo 'Packaging Files...'
+                        echo 'Packaging Files'
                      }
                  )
                 
             }
         }
-         stage('Deploy') {
+        stage('Deploy') {
             steps {
-            
-              echo 'Deploying...'
-                
+                echo 'Deploying...'
+                    
             }
         }
-         stage('Start Server') {
+        stage('Start Server') {
             steps {
-            
-              echo 'Server Starting'
-                
+                     
+                  echo 'Server Starting...'            
             }
-        }
-      
         }
     }
    post {
