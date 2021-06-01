@@ -27,20 +27,21 @@ pipeline {
                 
             }
         }
-        stage('Deploy') {
+         stage('Deploy') {
             steps {
-             parallel (
-                     'deploy':{
-                        echo 'Deploying...'
-                    
-                     },
-                     'start':{
-                        echo 'Server Starting...'
-                     }
-                 )
             
+              echo 'Deploying...'
                 
             }
+        }
+         stage('Start Server') {
+            steps {
+            
+              echo 'Server Starting'
+                
+            }
+        }
+      
         }
     }
    post {
