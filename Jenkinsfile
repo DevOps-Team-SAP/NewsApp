@@ -14,7 +14,7 @@ pipeline {
             steps {
                  parallel (
                      'build':{
-                        echo 'Running Builds'
+                        echo 'Running Builds...'
                         sh 'npm run build:prod'
                      },
                      'test':{
